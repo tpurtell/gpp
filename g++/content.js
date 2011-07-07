@@ -27,12 +27,34 @@ var checkForLinks = function() {
 	    if(data_content_url.startsWith(EMBED_LINK)) {
 	        var iframe = document.createElement("iframe");
 	        var url = getQueryVariable("app", data_content_url);
+	        var height = getQueryVariable("height", data_content_url);
             iframe.setAttribute("src", url);
             iframe.setAttribute("width", "100%");
-            iframe.setAttribute("height", "300");
+            iframe.setAttribute("frameborder", 0);
+            if(height != undefined)
+                iframe.setAttribute("height", height);
+            else
+                iframe.setAttribute("height", "260");
             
 	        var replace = div.parentNode;
 	        var parent = replace.parentNode;
+	        
+	        if(parent) {
+    	        var next = parent.nextSibling;
+    	        if(next != null && next.getAttribute("tabindex") !== null) {
+    	            //skip the tab index
+                    next = next.nextSibling;
+                    if(next) {
+                        //skip the embed cancel
+                        next = next.nextSibling;
+        	            while(next != null) {
+        	                var me = next;
+        	                next = next.nextSibling;
+        	                me.parentNode.removeChild(me);
+                        }
+                    }
+    	        }
+	        }
             parent.insertBefore(iframe, replace);
             parent.removeChild(replace);
 	    }
