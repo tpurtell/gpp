@@ -1,7 +1,7 @@
 // embed.png source http://en.wikipedia.org/wiki/File:Holliday_Junction.png
 var PORT = 8888;
 var REDIRECT = "http://openjunction.org/";
-var SERVER = "http://wrldsuksgo2mars.doesntexist.org:8888"
+var SERVER = "http://mobisocial.stanford.edu:8888"
 String.prototype.startsWith = function(prefix){
     return this.lastIndexOf(prefix, 0) === 0;
 }
