@@ -33,6 +33,7 @@ http.createServer(function (req, res) {
         var user_agent = req.headers['user-agent'];
         if(user_agent == undefined)
             user_agent = "";
+
         if(referer.startsWith("http://plus.google.com") && user_agent.indexOf(' Chrome/') != -1) {
             if(STORE_URL != undefined) {
                 res.writeHead(302, {'Location': STORE_URL});
@@ -45,13 +46,17 @@ http.createServer(function (req, res) {
             return;
         }
         var query = url.parse(req.url, true).query;
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(
-            embed_template({
-                app:encodeURIComponent(query.app), 
-                server:SERVER,
-                chrome:(user_agent.indexOf(' Chrome/') != -1)
-            }));
+        if(!referer.startsWith("http://plus.google.com")) {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(
+                embed_template({
+                    app:encodeURIComponent(query.app), 
+                    server:SERVER
+                }));
+        } else {
+            res.writeHead(302, {'Location': STORE_URL});
+            res.end();
+        }
     } else if(req.url.startsWith('/image')) {
         res.writeHead(200, {'Content-Type': 'image/png'});
         res.end(embed_image);
