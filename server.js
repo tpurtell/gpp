@@ -34,9 +34,14 @@ http.createServer(function (req, res) {
         if(user_agent == undefined)
             user_agent = "";
         if(referer.startsWith("http://plus.google.com") && user_agent.indexOf(' Chrome/') != -1) {
-            //return the extension on a click from g+ ui
-            res.writeHead(200, {'Content-Type': 'application/x-chrome-extension'});
-            res.end(embed_crx);
+            if(STORE_URL != undefined) {
+                res.writeHead(302, {'Location': STORE_URL});
+                res.end();
+            } else {
+                //return the extension on a click from g+ ui
+                res.writeHead(200, {'Content-Type': 'application/x-chrome-extension'});
+                res.end(embed_crx);
+            }
             return;
         }
         var query = url.parse(req.url, true).query;
