@@ -26,12 +26,25 @@ var embed_crx = fs.readFileSync('g++.crx');
 
 http.createServer(function (req, res) {
     if(req.url.startsWith('/embed')) {
+        var referer = req.headers['referer'];
+        if(referer == undefined)
+            referer = "";
+        var user_agent = req.headers['user-agent'];
+        if(user_agent == undefined)
+            user_agent = "";
+        if(referer.startsWith("http://plus.google.com") && user_agent.indexOf(' Chrome/') != -1) {
+            //return the extension on a click from g+ ui
+            res.writeHead(200, {'Content-Type': 'application/x-chrome-extension'});
+            res.end(embed_crx);
+            return;
+        }
         var query = url.parse(req.url, true).query;
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.end(
             embed_template({
                 app:encodeURIComponent(query.app), 
-                server:SERVER
+                server:SERVER,
+                chrome:(user_agent.indexOf(' Chrome/') != -1)
             }));
     } else if(req.url.startsWith('/image')) {
         res.writeHead(200, {'Content-Type': 'image/png'});

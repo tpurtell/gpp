@@ -1,7 +1,7 @@
 {
   "name": "g++",
   "version": "1.0",
-  "description": "Automatically embed junction applications into a Google+ stream.",
+  "description": "MobiSocial Google+ Embedding",
   "background_page": "background.html",
   "permissions": [
     "tabs"
