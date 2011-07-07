@@ -15,13 +15,13 @@
   <meta property="og:description" content="Allow dynamic embedded of sessions within the Google+ user interface.  Click to install the Chrome plugin.  Share a URL like <%= server %>/embed?app=http://server/file to embed it in the feed." /> 
   <meta name="keywords" content="social networking" /> 
 
-  <meta http-equiv="refresh" content="0; url=<%= server %>/extension">
+  <meta http-equiv="refresh" content="0; url=<%= decodeURIComponent(app) %>">
 </head>
-<!-- This should never actually be displayed because the calls should be handled by the main server code -->
+<!-- This will be display for a brief second while redirect to the app on non chrome browser -->
 <body>
   <center>
-    <a href="<%= server %>/extension"><img src="<%= server %>/image?app=<%= app %>"></a><br>
-    <h1>Allow the plugin to install...</h1>
+    <a href="decodeURIComponent(app)"><img src="<%= server %>/image?app=<%= app %>"></a><br>
+    <h1><a href="<%= server %>/extension">Install the plugin</a> for embedding, or click above to go to the application.</h1>
   </center>
 </body>
 </html>
