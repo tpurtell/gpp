@@ -1,0 +1,15 @@
+{
+  "name": "g++",
+  "version": "1.0",
+  "description": "Automatically embed junction applications into a Google+ stream.",
+  "background_page": "background.html",
+  "permissions": [
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://plus.google.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
