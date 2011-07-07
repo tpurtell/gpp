@@ -27,10 +27,14 @@ var checkForLinks = function() {
 	    if(data_content_url.startsWith(EMBED_LINK)) {
 	        var iframe = document.createElement("iframe");
 	        var url = getQueryVariable("app", data_content_url);
-	        var height = getQueryVariable("height", data_content_url);
             iframe.setAttribute("src", url);
-            iframe.setAttribute("width", "100%");
             iframe.setAttribute("frameborder", 0);
+	        var width = getQueryVariable("width", data_content_url);
+            if(width != undefined)
+                iframe.setAttribute("width", width);
+            else
+                iframe.setAttribute("width", "100%");
+	        var height = getQueryVariable("height", data_content_url);
             if(height != undefined)
                 iframe.setAttribute("height", height);
             else

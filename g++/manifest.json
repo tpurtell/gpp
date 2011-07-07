@@ -1,7 +1,7 @@
 {
-  "name": "g++",
+  "name": "g+ Stream Embedding",
   "version": "1.0",
-  "description": "MobiSocial Google+ Embedding",
+  "description": "g+ Stream Embedding",
   "background_page": "background.html",
   "permissions": [
     "tabs"
