@@ -11,7 +11,7 @@
             "128": "icon128.png" },
   "content_scripts": [
     {
-      "matches": ["https://plus.google.com/*"],
+      "matches": ["*://plus.google.com/*"],
       "js": ["content.js"]
     }
   ]
