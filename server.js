@@ -2,6 +2,7 @@
 var PORT = 8888;
 var REDIRECT = "http://openjunction.org/";
 var SERVER = "http://mobisocial.stanford.edu:8888"
+var STORE_URL = "https://chrome.google.com/webstore/detail/moiabiocelcpgljnpgbjfeljkmeacnnd"
 String.prototype.startsWith = function(prefix){
     return this.lastIndexOf(prefix, 0) === 0;
 }
@@ -50,8 +51,13 @@ http.createServer(function (req, res) {
         res.writeHead(200, {'Content-Type': 'image/png'});
         res.end(embed_image);
     } else if(req.url.startsWith('/extension')) {
-        res.writeHead(200, {'Content-Type': 'application/x-chrome-extension'});
-        res.end(embed_crx);
+        if(STORE_URL != undefined) {
+            res.writeHead(302, {'Location': STORE_URL});
+            res.end();
+        } else {
+            res.writeHead(200, {'Content-Type': 'application/x-chrome-extension'});
+            res.end(embed_crx);
+        }
     } else if(req.url.length <= 1){
         res.writeHead(302, {'Location': REDIRECT});
         res.end();
