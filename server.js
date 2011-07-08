@@ -54,7 +54,7 @@ http.createServer(function (req, res) {
                     app:encodeURIComponent(query.app), 
                     app_url:query.app, 
                     server:SERVER,
-                    hostname:url.parse(parsed.query.app).hostname,
+                    hostname:(parsed.query.app != undefined) ? url.parse(parsed.query.app).hostname : "UNKNOWN",
                     image:query.image,
                     url:req.url,
                     chrome:(user_agent.indexOf(' Chrome/') != -1),
