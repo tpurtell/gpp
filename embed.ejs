@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <meta name="viewport" content="width=1024,maximum-scale=1.0" /> 
   <meta name="title" content="Embedded Junction Session" /> 
-  <% if(description) { %>
+  <% if(description != undefined) { %>
 	<meta name="description" content="Dynamic session embedded from <%= hostname %>.  <%= description %>" /> 
   <% } else { %>
 	<meta name="description" content="Dynamic session embedded from <%= hostname %>.  Click to install the Chrome plugin or visit the session.  Visit https://github.com/tpurtell/gpp to find out how to embed your application." /> 
@@ -15,13 +15,13 @@
   <meta property="og:type" content="article" /> 
   <meta property="og:title" content="MobiSocial Google+ Embedding" /> 
   <meta property="og:url" content="<%= server %>/embed?app=<%= app %>" /> 
-  <% if(image) { %>
+  <% if(image != undefined) { %>
   	<meta property="og:image" content="<%= image %>" /> 
   <% } else { %>
   	<meta property="og:image" content="<%= server %>/image?app=<%= app %>" /> 
   <% } %>
 
-  <% if(description) { %>
+  <% if(description != undefined) { %>
 	<meta property="og:description" content="Dynamic session embedded from <%= hostname %>.  <%= description %>" /> 
   <% } else { %>
 	<meta property="og:description" content="Dynamic session embedded from <%= hostname %>.  Click to install the Chrome plugin or visit the session.  Visit https://github.com/tpurtell/gpp to find out how to embed your application." /> 

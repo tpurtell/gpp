@@ -56,7 +56,8 @@ http.createServer(function (req, res) {
                     server:SERVER,
                     hostname:url.parse(parsed.query.app).hostname,
                     image:query.image,
-                    chrome:(user_agent.indexOf(' Chrome/') != -1)
+                    chrome:(user_agent.indexOf(' Chrome/') != -1),
+                    description:query.description
                 }));
         } else {
             res.writeHead(302, {'Location': STORE_URL});
