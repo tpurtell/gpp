@@ -5,10 +5,9 @@ String.prototype.startsWith = function(prefix){
 }
 
 function getQueryVariable(variable, location) {
-    var query = location.split("?", 2);
-    if(query.length != 2)
+    if(location.indexOf("?") == -1)
         return undefined;
-    query = query[1];
+    var query = location.substring(location.indexOf("?") + 1);
     var vars = query.split("&");
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
@@ -27,6 +26,7 @@ var checkForLinks = function() {
 	    if(data_content_url.startsWith(EMBED_LINK)) {
 	        var iframe = document.createElement("iframe");
 	        var url = getQueryVariable("app", data_content_url);
+	        alert(data_content_url + "\n" + url);
             iframe.setAttribute("src", url);
             iframe.setAttribute("frameborder", 0);
 	        var width = getQueryVariable("width", data_content_url);
