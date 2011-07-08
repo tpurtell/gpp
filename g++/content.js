@@ -1,4 +1,4 @@
-var EMBED_LINK = "http://mobisocial.stanford.edu:8888/embed?app="
+var EMBED_LINK = "http://mobisocial.stanford.edu:8888/embed?"
 
 String.prototype.startsWith = function(prefix){
     return this.lastIndexOf(prefix, 0) === 0;
