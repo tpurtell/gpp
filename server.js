@@ -56,6 +56,7 @@ http.createServer(function (req, res) {
                     server:SERVER,
                     hostname:url.parse(parsed.query.app).hostname,
                     image:query.image,
+                    url:req.url,
                     chrome:(user_agent.indexOf(' Chrome/') != -1),
                     description:query.description
                 }));
