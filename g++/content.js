@@ -26,7 +26,6 @@ var checkForLinks = function() {
 	    if(data_content_url.startsWith(EMBED_LINK)) {
 	        var iframe = document.createElement("iframe");
 	        var url = getQueryVariable("app", data_content_url);
-	        alert(data_content_url + "\n" + url);
             iframe.setAttribute("src", url);
             iframe.setAttribute("frameborder", 0);
 	        var width = getQueryVariable("width", data_content_url);
