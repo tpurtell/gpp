@@ -5,22 +5,35 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <meta name="viewport" content="width=1024,maximum-scale=1.0" /> 
   <meta name="title" content="Embedded Junction Session" /> 
-  <meta name="description" content="Allow dynamic embedded of sessions within the Google+ user interface.  Click to install the Chrome plugin.  Share a URL like <%= server %>/embed?app=http://server/file to embed it in the feed." /> 
+  <% if(description) { %>
+	<meta name="description" content="Dynamic session embedded from <%= hostname %>.  <%= description %>" /> 
+  <% } else { %>
+	<meta name="description" content="Dynamic session embedded from <%= hostname %>.  Click to install the Chrome plugin or visit the session.  Visit https://github.com/tpurtell/gpp to find out how to embed your application." /> 
+  <% } %>
 
   <meta property="og:site_name" content="MobiSocial Google+ Embedding" /> 
   <meta property="og:type" content="article" /> 
   <meta property="og:title" content="MobiSocial Google+ Embedding" /> 
   <meta property="og:url" content="<%= server %>/embed?app=<%= app %>" /> 
-  <meta property="og:image" content="<%= server %>/image?app=<%= app %>" /> 
-  <meta property="og:description" content="Allow dynamic embedded of sessions within the Google+ user interface.  Click to install the Chrome plugin.  Share a URL like <%= server %>/embed?app=http://server/file to embed it in the feed." /> 
+  <% if(image) { %>
+  	<meta property="og:image" content="<%= image %>" /> 
+  <% } else { %>
+  	<meta property="og:image" content="<%= server %>/image?app=<%= app %>" /> 
+  <% } %>
+
+  <% if(description) { %>
+	<meta property="og:description" content="Dynamic session embedded from <%= hostname %>.  <%= description %>" /> 
+  <% } else { %>
+	<meta property="og:description" content="Dynamic session embedded from <%= hostname %>.  Click to install the Chrome plugin or visit the session.  Visit https://github.com/tpurtell/gpp to find out how to embed your application." /> 
+  <% } %>
   <meta name="keywords" content="social networking" /> 
 
-  <meta http-equiv="refresh" content="0; url=<%= decodeURIComponent(app) %>">
+  <meta http-equiv="refresh" content="0; url=<%= chrome ? app_url : server + "/image" %>"<>
 </head>
-<!-- This will be display for a brief second while redirect to the app on non chrome browser -->
+<!-- This will be display for a brief second while redirecting -->
 <body>
   <center>
-    <a href="decodeURIComponent(app)"><img src="<%= server %>/image?app=<%= app %>"></a><br>
+    <a href="<%= app_url %>"><img src="<%= server %>/image?app=<%= app %>"></a><br>
     <h1><a href="<%= server %>/extension">Install the plugin</a> for embedding, or click above to go to the application.</h1>
   </center>
 </body>

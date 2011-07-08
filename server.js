@@ -45,13 +45,18 @@ http.createServer(function (req, res) {
             }
             return;
         }
-        var query = url.parse(req.url, true).query;
+        var parsed = url.parse(req.url, true);
+        var query = parsed.query;
         if(!referer.startsWith("http://plus.google.com")) {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.end(
                 embed_template({
                     app:encodeURIComponent(query.app), 
-                    server:SERVER
+                    app_url:query.app, 
+                    server:SERVER,
+                    hostname:url.parse(parsed.query.app).hostname,
+                    image:query.image,
+                    chrome:(user_agent.indexOf(' Chrome/') != -1)
                 }));
         } else {
             res.writeHead(302, {'Location': STORE_URL});
