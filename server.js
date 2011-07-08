@@ -19,6 +19,9 @@ var ejs = require('../ejs');
 console.log('Loading embed template...');
 var embed_template = ejs.compile(fs.readFileSync('embed.ejs', 'utf8'));
 
+console.log('Loading jail template...');
+var jail_template = ejs.compile(fs.readFileSync('jail.ejs', 'utf8'));
+
 console.log('Loading embed image...');
 var embed_image = fs.readFileSync('embed.png');
 
@@ -67,6 +70,17 @@ http.createServer(function (req, res) {
     } else if(req.url.startsWith('/image')) {
         res.writeHead(200, {'Content-Type': 'image/png'});
         res.end(embed_image);
+    } else if(req.url.startsWith('/jail')) {
+        var user_agent = req.headers['user-agent'];
+        if(user_agent == undefined)
+            user_agent = "";
+        var parsed = url.parse(req.url, true);
+        var query = parsed.query;
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(
+            jail_template({
+                app_url:query.app, 
+            }));
     } else if(req.url.startsWith('/extension')) {
         if(STORE_URL != undefined) {
             res.writeHead(302, {'Location': STORE_URL});
