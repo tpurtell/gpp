@@ -33,7 +33,13 @@
 <!-- This will be display for a brief second while redirecting -->
 <body>
   <center>
-    <a href="<%= app_url %>"><img src="<%= server %>/image?app=<%= app %>"></a><br>
+    <a href="<%= app_url %>">
+	  <% if(image != undefined) { %>
+		<img src="<%= server %><%= url.replace("/embed", "/image") %>">
+	  <% } else { %>
+		<img src="<%= image %>">
+	  <% } %>
+	</a><br>
     <h1><a href="<%= server %>/extension">Install the plugin</a> for embedding, or click above to go to the application.</h1>
   </center>
 </body>
