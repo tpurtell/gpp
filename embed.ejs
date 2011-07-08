@@ -18,7 +18,7 @@
   <% if(image != undefined) { %>
   	<meta property="og:image" content="<%= image %>" /> 
   <% } else { %>
-  	<meta property="og:image" content="<%= server %>/image?app=<%= app %>" /> 
+  	<meta property="og:image" content="<%= url.replace("/embed", "/image") %> /> 
   <% } %>
 
   <% if(description != undefined) { %>
