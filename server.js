@@ -47,7 +47,7 @@ http.createServer(function (req, res) {
         }
         var parsed = url.parse(req.url, true);
         var query = parsed.query;
-        if(!referer.startsWith("http://plus.google.com") && user_agent.indexOf(' Chrome/') == -1) {
+        if(!referer.startsWith("http://plus.google.com") || user_agent.indexOf(' Chrome/') == -1) {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.end(
                 embed_template({
