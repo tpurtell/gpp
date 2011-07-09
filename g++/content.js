@@ -1,6 +1,6 @@
 var EMBED_LINK = "http://mobisocial.stanford.edu:8888/embed?"
 var JAIL_LINK = "http://mobisocial.stanford.edu:8888/jail?"
-var CAJA = true;
+var CAJA = false;
 
 String.prototype.startsWith = function(prefix){
     return this.lastIndexOf(prefix, 0) === 0;
@@ -55,6 +55,7 @@ var checkForLinks = function() {
                 jail.setAttribute("src", data_content_url.replace(EMBED_LINK, JAIL_LINK));
             } else {
                 jail.setAttribute("src", app_url);
+                jail.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms");
             }
             jail.setAttribute("frameborder", 0);
             //common props
